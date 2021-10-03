@@ -1,41 +1,24 @@
 import {createApp} from 'vue'
 import {createRouter, createWebHistory} from 'vue-router'
-import { createStore } from 'vuex'
+import store from './components/store/index.js'
 import App from './App.vue'
 import BaseCard from './components/UI/BaseCard.vue'
 import BaseButton from './components/UI/BaseButton.vue'
 import BaseDialog from "./components/UI/BaseDialog";
-import Activities from "./components/activities/TheActivities";
-import Welcome from "./components/welcome/Welcome";
-import ChargingStations from "./components/chargingstations/TheChargingStations";
+import Activities from "./components/pages/activities/TheActivities";
+import Welcome from "./components/pages/welcome/Welcome";
+import ChargingStations from "./components/pages/chargingstations/TheChargingStations";
+import UserAuth from "./components/pages/auth/UserAuth";
 
-const store = createStore({
-    state() {
-        return {
-            counter: 0
-        };
-    },
-    mutations: {
-        increment(state){
-            state.counter = state.counter + 1
-        },
-        increase(state, number) {
-            state.counter = state.counter + number.value
-        }
-    },
-    getters: {
-        finalCounter(state) {
-            return state.counter * 2;
-        }
-    }
-})
+
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         {path: '/aktiviteter', component: Activities},
         {path: '/', component: Welcome },
-        {path: '/ladestasjoner', component: ChargingStations }
+        {path: '/ladestasjoner', component: ChargingStations },
+        {path: '/auth', component: UserAuth }
     ]
 })
 
