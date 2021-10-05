@@ -9,6 +9,7 @@ import Activities from "./components/pages/activities/TheActivities";
 import Welcome from "./components/pages/welcome/Welcome";
 import ChargingStations from "./components/pages/chargingstations/TheChargingStations";
 import UserAuth from "./components/pages/auth/UserAuth";
+import TheProfile from "./components/pages/profile/TheProfile";
 
 
 
@@ -18,7 +19,8 @@ const router = createRouter({
         {path: '/aktiviteter', component: Activities},
         {path: '/', component: Welcome },
         {path: '/ladestasjoner', component: ChargingStations },
-        {path: '/auth', component: UserAuth }
+        {path: '/auth', component: UserAuth },
+        {path: '/profile', component: TheProfile}
     ]
 })
 

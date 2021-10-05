@@ -1,24 +1,41 @@
 <template>
-  <base-card>
-    <h2>Ladestasjoner</h2>
-    <h3> {{ getCounter }}</h3>
-    <button @click="increment">Increment</button>
+  <base-button @click="getCurrentGeolocation">Hent nærmeste stasjoner</base-button>
+  <base-card v-for="stasjon in stasjoner" :key="stasjon.internationalId">
+    <p><b>{{ stasjon.name }}</b></p>
+    <p>Gate: {{ stasjon.street }} {{stasjon.houseNumber}}</p>
+    <p> {{stasjon.distanse}}</p>
   </base-card>
+
 </template>
 
 <script>
 import BaseCard from "../../UI/BaseCard";
+import BaseButton from "../../UI/BaseButton";
 export default {
-  components: {BaseCard},
+  created() {
+    this.$store.dispatch("hentStasjoner")
+  },
+  components: {BaseButton, BaseCard},
   computed: {
-    getCounter() {
-      return this.$store.getters.finalCounter
+    stasjoner() {
+      return this.$store.getters.stasjoner
+    }
+  },
+  data() {
+    return {
+      location: null
     }
   },
   methods: {
-    increment() {
-      this.$store.commit('increment')
+    getCurrentGeolocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(it => {
+            this.location = it
+          this.$store.dispatch("hentNærmesteStasjoner",{lat: this.location.coords.latitude, lon: this.location.coords.longitude})
+        });
+      }
     }
+
   }
 }
 

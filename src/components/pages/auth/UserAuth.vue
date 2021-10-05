@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!isLoggedIn">
     <base-dialog @close="dismissError" v-if="errorMessage != null" title="An error occured">
       <p> {{ errorMessage}}</p>
     </base-dialog>
@@ -23,6 +23,9 @@
       </form>
     </base-card>
   </div>
+  <div>
+    <h3>You are logged in, lucky you! Enjoy</h3>
+  </div>
 </template>
 
 <script>
@@ -31,7 +34,6 @@ import BaseCard from "../../UI/BaseCard";
 import BaseDialog from "../../UI/BaseDialog";
 
 export default {
-  name: "Authorization.vue",
   components: {BaseDialog, BaseCard, BaseButton},
   data() {
     return {
@@ -57,6 +59,9 @@ export default {
       } else {
         return 'Login instead'
       }
+    },
+    isLoggedIn() {
+       return this.$store.getters.isAuthenticated
     }
   },
   methods: {

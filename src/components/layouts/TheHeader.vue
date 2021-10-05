@@ -7,6 +7,8 @@
       <router-link to="/" class="py-2 d-none d-md-inline-block">Home</router-link>
       <router-link to="aktiviteter" class="py-2 d-none d-md-inline-block">Aktiviteter</router-link>
       <router-link to="ladestasjoner" class="py-2 d-none d-md-inline-block">Ladestasjoner</router-link>
+      <router-link v-if="!isLoggedIn" to="auth" class="py-2 d-none d-md-inline-block">Login</router-link>
+      <router-link v-if="isLoggedIn" to="profile" class="py-2 d-none d-md-inline-bloc">Profil</router-link>
     </div>
   </nav>
 </template>
@@ -17,6 +19,11 @@ export default {
   name: "TheHeader",
   components: {
 
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isAuthenticated
+    }
   }
 }
 </script>

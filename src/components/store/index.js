@@ -1,10 +1,12 @@
 import {createStore} from "vuex";
 import authModule from './modules/auth/index.js'
+import stasjonerModule from "./modules/stasjoner/index.js";
 
 
 const store = createStore({
     modules: {
-        auth: authModule
+        auth: authModule,
+        stasjoner: stasjonerModule
     },
     state() {
         return {
