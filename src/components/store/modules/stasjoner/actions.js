@@ -1,6 +1,6 @@
 export default {
     async hentStasjoner(context) {
-        const response = await fetch('http://localhost:8080/stasjoner/fylke/oslo',{
+        const response = await fetch('http://localhost:8080/stasjoner/random/10',{
             method: 'GET'
         });
 
